@@ -8,23 +8,20 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      # REVIEW: забираем код репозитория на раннер
       - uses: actions/checkout@v4
 
-      # REVIEW: ставим Python 3.12 и включаем кэш pip, чтобы зависимости не скачивались заново
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
           cache: pip
-          cache-dependency-path: requirements-dev.txt
+          cache-dependency-path: requirements_dev.txt
 
       - name: Install dependencies
         run: pip install -r requirements_dev.txt
 
       - name: Run tests
         run: python -m pytest -v
-
-      # REVIEW: шаг идёт после тестов, поэтому при красных тестах artifact не создаётся
+        
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
