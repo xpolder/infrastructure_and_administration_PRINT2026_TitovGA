@@ -64,7 +64,7 @@ deadlines: dict[int, Deadline] = {}
 next_id = 1
 
 
-# сброс состояния чтобы тесты они не зависели друг от друга
+# сброс состояния чтобы тесты не зависели друг от друга
 def reset_storage() -> None:
     global next_id
     deadlines.clear()
@@ -141,7 +141,7 @@ def get_deadline(deadline_id: int):
     return deadline
 
 
-# что меняем одно поле существующего ресурса, повторный вызов будет безопасным
+# меняем одно поле существующего ресурса, повторный вызов будет безопасным
 @app.patch("/deadlines/{deadline_id}/done")
 def mark_done(deadline_id: int):
     deadline = deadlines.get(deadline_id)
